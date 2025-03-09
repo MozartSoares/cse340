@@ -1,8 +1,187 @@
 /******* Change Box Model ***************/
+:root {
+  --blue: #017890;
+  --gray: #333;
+
+  --bp-desktop: 1200px;
+  --bp-mobile: 768px;
+}
 *,
 *:before,
 *:after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  text-decoration: none;
+  list-style: none;
+  font-family: 'Roboto', sans-serif;
+}
+body {
+  margin: 0 auto;
+  max-width: 95%;
+}
+
+main,
+footer {
+  max-width: var(--bp-desktop);
+  margin: 0 auto;
+}
+
+#top-header {
+  background-color: #f4f4f4;
+  padding: 1em 0.5em;
+  text-align: center;
+}
+#top-header > div {
+  max-width: var(--bp-desktop);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.siteName a,
+#tools a {
+  font-size: 1.7em;
+  font-weight: bold;
+  color: var(--gray);
+  text-align: center;
+}
+#tools a {
+  font-size: 1em;
+}
+.navigation-menu {
+  background-color: var(--gray);
+  color: #fff;
+  font-size: 1.3em;
+}
+
+.navigation-menu ul {
+  max-width: var(--bp-desktop);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.navigation-menu li {
+  padding: 0.8em;
+}
+.container h1,
+.upgrades h2,
+.reviews h2 {
+  font-size: 2.5em;
+  color: var(--gray);
+  margin-top: 0.5em;
+}
+
+.hero {
+  position: relative;
+  min-height: 600px;
+  background-image: url('/images/vehicles/delorean.jpg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.hero div {
+  position: absolute;
+  top: 8%;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: bold;
+  margin: 2em 0;
+  color: var(--blue);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 1.5em;
+  min-width: 150px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.hero > div h2 {
+  font-size: 1.7em;
+}
+.hero > div p {
+  font-size: 1.3em;
+  margin: 0.8em 0;
+  line-height: 1.3em;
+}
+
+.btn {
+  background-color: var(--blue);
+  text-align: center;
+  color: #fff;
+  padding: 1em 1.5em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.upgrades .upgrade-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin-top: 1em;
+  gap: 1em;
+}
+.section-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+}
+
+.upgrade {
+  border: 1px solid #000;
+  background-color: var(--blue);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+}
+
+.upgrade a {
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0.5em;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-top: 0.5em;
+  color: #fff;
+}
+
+.reviews ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.reviews ul li {
+  list-style: disc;
+  margin: 1em;
+  font-size: 1.5em;
+}
+
+.section-wrapper {
+  width: 100%;
+}
+
+footer {
+  margin-top: 2em;
+}
+
+@media screen and (min-width: 768px) {
+  .section-wrapper {
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+  }
+  .section-wrapper > :first-child {
+    order: 2;
+  }
+
+  .section-wrapper > :nth-child(2) {
+    order: 1;
+  }
 }
