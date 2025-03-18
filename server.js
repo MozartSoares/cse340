@@ -4,67 +4,74 @@
  *******************************************/
 
 /* ***********************
- * Require Statements
+ * Import Statements
  *************************/
-const express = require('express');
-const expressLayouts = require('express-ejs-layouts');
-const env = require('dotenv').config();
-const livereload = require('livereload');
-const connectLiveReload = require('connect-livereload');
-
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
+import { config } from "dotenv";
+config();
+import express from "express";
+import expressLayouts from "express-ejs-layouts";
+import livereload from "livereload";
+import connectLiveReload from "connect-livereload";
+import * as baseController from "./controllers/baseController.js";
 const app = express();
 
 /* ***********************
  * Live reload
  *************************/
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const liveReloadServer = livereload.createServer();
-liveReloadServer.watch(__dirname + '/views'); // Watch EJS files
-liveReloadServer.watch(__dirname + '/public'); // Watch static files
+liveReloadServer.watch(join(__dirname, "views"));
+liveReloadServer.watch(join(__dirname, "public"));
 
 // Attach LiveReload to HTML responses
 app.use(connectLiveReload());
 
 // Refresh browser on changes
-liveReloadServer.server.once('connection', () => {
+liveReloadServer.server.once("connection", () => {
   setTimeout(() => {
-    liveReloadServer.refresh('*'); // Reloads all pages
+    liveReloadServer.refresh("*"); // Reloads all pages
   }, 100);
 });
 app.use((req, res, next) => {
-  res.setHeader('Cache-Control', 'no-store');
+  res.setHeader("Cache-Control", "no-store");
   next();
 });
 
 /* ***********************
  * View engine and template
  *************************/
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 app.use(expressLayouts);
-app.set('layout', './layouts/layout');
+app.set("layout", "./layouts/layout");
 
 // Disable EJS caching in development
-app.set('view cache', false);
+app.set("view cache", false);
 
 /* ***********************
  * Middleware
  *************************/
-app.use(express.static('public')); // Serve static files
+app.use(express.static("public")); // Serve static files
 
 /* ***********************
  * Routes
  *************************/
-const staticRoutes = require('./routes/static');
+import staticRoutes from "./routes/static.js";
+import inventoryRoute from "./routes/inventoryRoute.js";
 app.use(staticRoutes);
 
-app.get('/', (req, res) => {
-  res.render('index', { title: 'Home' });
-});
+app.get("/", baseController.buildHome);
+app.use("/inv", inventoryRoute);
 
 /* ***********************
  * Local Server Information
  *************************/
 const port = process.env.PORT || 3000;
-const host = process.env.HOST || 'localhost';
+const host = process.env.HOST || "localhost";
 
 /* ***********************
  * Start Server
