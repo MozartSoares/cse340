@@ -24,6 +24,39 @@ Util.getNav = async function (req, res, next) {
   return list;
 };
 
+Util.buildInventoryItemPage = async function (data) {
+  return `
+  <div class="vehicle-container">
+    <!-- Vehicle Image -->
+    <div class="image-container">
+      <img src="${data.inv_image}" alt="${data.inv_make} ${
+    data.inv_model
+  }" class="vehicle-image">
+    </div>
+
+    <!-- Vehicle Details -->
+    <div class="vehicle-details">
+       <h2>${data.inv_year} ${data.inv_make} ${data.inv_model}</h2>
+      <p class="price"><strong>Price:</strong> $${new Intl.NumberFormat(
+        "en-US"
+      ).format(data.inv_price)}</p>
+      <p><strong>Mileage:</strong> ${new Intl.NumberFormat("en-US").format(
+        data.inv_miles
+      )} miles</p>
+      <p><strong>Color:</strong> ${data.inv_color}</p>
+      <p class="description"><strong>Description:</strong> ${
+        data.inv_description
+      }</p>
+
+      <!-- Call to Action -->
+      <div class="cta">
+        <a href="/" class="back-link">← Back to Home</a>
+      </div>
+    </div>
+  </div>
+  `;
+};
+
 /* **************************************
  * Build the classification view HTML
  * ************************************ */

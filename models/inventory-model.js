@@ -9,6 +9,17 @@ export const getClassifications = async () => {
   );
 };
 
+export const getInventoryItemByID = async (inv_id) => {
+  try {
+    const data = await pool.query(
+      `SELECT * FROM public.inventory WHERE inv_id = ${inv_id}`
+    );
+    return data.rows;
+  } catch (error) {
+    console.error("getInventoryItemByID error " + error);
+  }
+};
+
 /* ***************************
  *  Get all inventory items and classification_name by classification_id
  * ************************** */
