@@ -280,3 +280,133 @@ footer {
     flex: 2;
   }
 }
+
+/* Login Styles */
+.login-container {
+  max-width: 450px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: var(--gray);
+}
+
+.form-group input {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-group button {
+  background-color: var(--blue);
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-group button:hover {
+  background-color: #015a6e;
+}
+
+.register-link {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.register-link a {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.notice {
+  background-color: #ffe8e8;
+  border-left: 4px solid #ff5252;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0 4px 4px 0;
+}
+
+.notice li {
+  margin-left: 1.5rem;
+  list-style-type: disc;
+  color: #d32f2f;
+}
+
+/* Register Styles */
+.register-container {
+  max-width: 450px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.register-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.password-input-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.show-password {
+  padding: 0.4rem 0.8rem;
+  background-color: #e0e0e0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.password-requirements {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.password-requirements ul {
+  margin-left: 1.5rem;
+  margin-top: 0.3rem;
+}
+
+.password-requirements li {
+  list-style-type: disc;
+  margin-bottom: 0.2rem;
+}
+
+.login-link {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.login-link a {
+  color: var(--blue);
+  text-decoration: underline;
+}

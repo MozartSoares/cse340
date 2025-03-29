@@ -1,0 +1,79 @@
+<%- messages() %>
+
+<h1><%= title %></h1>
+
+<% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+
+<div class="register-container">
+  <form id="registerForm" action="/account/register" method="post">
+    <div class="form-group">
+      <label for="firstname">First Name:</label>
+      <input type="text" id="firstname" name="account_firstname" required />
+    </div>
+    <div class="form-group">
+      <label for="lastname">Last Name:</label>
+      <input type="text" id="lastname" name="account_lastname" required />
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="account_email" required />
+    </div>
+    <div class="form-group password-field">
+      <label for="password">Password:</label>
+      <div class="password-input-container">
+        <input
+          type="password"
+          id="password"
+          name="account_password"
+          required
+          pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z0-9\s]).{8,}$"
+        />
+        <button type="button" id="show-password" class="show-password">
+          Show
+        </button>
+      </div>
+      <div class="password-requirements">
+        <p>Password must be:</p>
+        <ul>
+          <li>at least 8 characters</li>
+          <li>contain at least 1 capital letter</li>
+          <li>contain at least 1 number</li>
+          <li>contain at least 1 special character</li>
+        </ul>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit">Register</button>
+    </div>
+  </form>
+
+  <div class="login-link">
+    <p>
+      Already have an account?
+      <a href="/account/login">Login</a>
+    </p>
+  </div>
+</div>
+
+<script>
+  document
+    .getElementById("show-password")
+    .addEventListener("click", function () {
+      const passwordInput = document.getElementById("password");
+      const showPasswordButton = document.getElementById("show-password");
+
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        showPasswordButton.textContent = "Hide";
+      } else {
+        passwordInput.type = "password";
+        showPasswordButton.textContent = "Show";
+      }
+    });
+</script>
