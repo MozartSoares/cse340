@@ -350,7 +350,7 @@ footer {
 
 .notice li {
   margin-left: 1.5rem;
-  list-style-type: disc;
+  list-style-type: disc !important;
   color: #d32f2f;
 }
 
@@ -409,4 +409,16 @@ footer {
 .login-link a {
   color: var(--blue);
   text-decoration: underline;
+}
+
+/* Form Validation Styles */
+input:required:invalid,
+input:focus:invalid {
+  border: 2px solid #ff5252;
+  background-color: #fff8f8;
+}
+
+input:required:valid {
+  border: 2px solid #28a745;
+  background-color: #f8fff8;
 }

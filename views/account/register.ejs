@@ -14,15 +14,33 @@
   <form id="registerForm" action="/account/register" method="post">
     <div class="form-group">
       <label for="firstname">First Name:</label>
-      <input type="text" id="firstname" name="account_firstname" required />
+      <input
+        type="text"
+        id="firstname"
+        name="account_firstname"
+        required
+        value="<%= locals.account_firstname ? account_firstname : '' %>"
+      />
     </div>
     <div class="form-group">
       <label for="lastname">Last Name:</label>
-      <input type="text" id="lastname" name="account_lastname" required />
+      <input
+        type="text"
+        id="lastname"
+        name="account_lastname"
+        required
+        value="<%= locals.account_lastname ? account_lastname : '' %>"
+      />
     </div>
     <div class="form-group">
       <label for="email">Email:</label>
-      <input type="email" id="email" name="account_email" required />
+      <input
+        type="email"
+        id="email"
+        name="account_email"
+        required
+        value="<%= locals.account_email ? account_email : '' %>"
+      />
     </div>
     <div class="form-group password-field">
       <label for="password">Password:</label>
@@ -32,7 +50,7 @@
           id="password"
           name="account_password"
           required
-          pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z0-9\s]).{8,}$"
+          pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z0-9\s]).{12,}$"
         />
         <button type="button" id="show-password" class="show-password">
           Show
@@ -41,7 +59,7 @@
       <div class="password-requirements">
         <p>Password must be:</p>
         <ul>
-          <li>at least 8 characters</li>
+          <li>at least 12 characters</li>
           <li>contain at least 1 capital letter</li>
           <li>contain at least 1 number</li>
           <li>contain at least 1 special character</li>
