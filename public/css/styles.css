@@ -308,11 +308,16 @@ footer {
   color: var(--gray);
 }
 
-.form-group input {
+.form-group input,
+.form-group textarea,
+#classificationList {
   padding: 0.8rem;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .form-group button {
@@ -324,6 +329,7 @@ footer {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s;
+  width: 100%;
 }
 
 .form-group button:hover {
@@ -346,12 +352,15 @@ footer {
   padding: 1rem;
   margin-bottom: 1.5rem;
   border-radius: 0 4px 4px 0;
+  word-wrap: break-word;
+  max-width: 100%;
 }
 
 .notice li {
   margin-left: 1.5rem;
   list-style-type: disc !important;
   color: #d32f2f;
+  margin-bottom: 0.5rem;
 }
 
 /* Register Styles */
@@ -421,4 +430,156 @@ input:focus:invalid {
 input:required:valid {
   border: 2px solid #28a745;
   background-color: #f8fff8;
+}
+
+/* Management Styles */
+.management-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.management-links h2 {
+  color: var(--gray);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.management-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.management-links li {
+  margin-bottom: 1rem;
+}
+
+.management-links a {
+  display: block;
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  background-color: var(--blue);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  text-align: center;
+}
+
+.management-links a:hover {
+  background-color: #015a6e;
+}
+
+/* Add Classification Styles */
+.add-classification-container {
+  max-width: 450px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.add-classification-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.instructions {
+  display: block;
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+/* Add Inventory Styles */
+.add-inventory-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.add-inventory-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  font-family: inherit;
+}
+
+#classificationList {
+  font-family: inherit;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive styles for inventory management */
+@media screen and (min-width: 768px) {
+  .management-container,
+  .add-classification-container,
+  .add-inventory-container {
+    padding: 2rem;
+  }
+
+  .management-links ul.flex {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .management-links a {
+    display: inline-block;
+    width: auto;
+  }
+
+  .form-group {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .form-group label {
+    width: 30%;
+    margin-bottom: 0;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .password-input-container,
+  #classificationList {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .management-container,
+  .add-classification-container,
+  .add-inventory-container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .form-group input,
+  .form-group button,
+  #classificationList {
+    padding: 0.6rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
 }
