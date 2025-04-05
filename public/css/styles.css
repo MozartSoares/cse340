@@ -379,19 +379,31 @@ footer {
   gap: 1.5rem;
 }
 
+.show-password {
+  padding: 0.2rem 0.4rem;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  height: fit-content;
+  align-self: center;
+  color: #666;
+  transition: all 0.2s ease;
+}
+
+.show-password:hover {
+  background-color: #e8e8e8;
+  border-color: #ccc;
+}
+#password {
+  width: 100%;
+}
+
 .password-input-container {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-}
-
-.show-password {
-  padding: 0.4rem 0.8rem;
-  background-color: #e0e0e0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
+  width: 100%;
 }
 
 .password-requirements {

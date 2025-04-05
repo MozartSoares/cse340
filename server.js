@@ -22,6 +22,7 @@ import connectPgSimple from "connect-pg-simple";
 import flash from "connect-flash";
 import expressMessages from "express-messages";
 import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
 const app = express();
 
 /* ***********************
@@ -85,7 +86,9 @@ app.use((req, res, next) => {
 
 app.use(express.static("public")); // Serve static files
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(utilities.checkJWTToken);
 
 /* ***********************
  * Routes
