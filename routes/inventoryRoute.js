@@ -18,17 +18,26 @@ router.get(
 );
 
 //build management view
-router.get("/", utilities.handleErrors(invController.buildManagementView));
+router.get(
+  "/",
+  utilities.checkLogin,
+  utilities.checkAdminEmployee,
+  utilities.handleErrors(invController.buildManagementView)
+);
 
 //build add classification view
 router.get(
   "/add-classification",
+  utilities.checkLogin,
+  utilities.checkAdminEmployee,
   utilities.handleErrors(invController.buildAddClassification)
 );
 
 //add a new classification
 router.post(
   "/add-classification",
+  utilities.checkLogin,
+  utilities.checkAdminEmployee,
   validate.classificationRules(),
   validate.checkClassData,
   utilities.handleErrors(invController.addClassification)
@@ -37,12 +46,16 @@ router.post(
 //build add inventory view
 router.get(
   "/add-inventory",
+  utilities.checkLogin,
+  utilities.checkAdminEmployee,
   utilities.handleErrors(invController.buildAddInventory)
 );
 
 //add a new inventory item
 router.post(
   "/add-inventory",
+  utilities.checkLogin,
+  utilities.checkAdminEmployee,
   validate.inventoryRules(),
   validate.checkInvData,
   utilities.handleErrors(invController.addInventory)
@@ -51,18 +64,24 @@ router.post(
 //get inventory JSON data by classification
 router.get(
   "/getInventory/:classification_id",
+  utilities.checkLogin,
+  utilities.checkAdminEmployee,
   utilities.handleErrors(invController.getInventoryJSON)
 );
 
 //build edit inventory view
 router.get(
   "/edit/:inv_id",
+  utilities.checkLogin,
+  utilities.checkAdminEmployee,
   utilities.handleErrors(invController.editInventoryView)
 );
 
 //update inventory item
 router.post(
   "/update",
+  utilities.checkLogin,
+  utilities.checkAdminEmployee,
   validate.inventoryRules(),
   validate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory)
@@ -71,11 +90,18 @@ router.post(
 //build delete confirmation view
 router.get(
   "/delete/:inv_id",
+  utilities.checkLogin,
+  utilities.checkAdminEmployee,
   utilities.handleErrors(invController.buildDeleteView)
 );
 
 //process delete inventory item
-router.post("/delete", utilities.handleErrors(invController.deleteInventory));
+router.post(
+  "/delete",
+  utilities.checkLogin,
+  utilities.checkAdminEmployee,
+  utilities.handleErrors(invController.deleteInventory)
+);
 
 //generate error (for testing)
 router.get(

@@ -35,4 +35,32 @@ router.get(
   utilities.handleErrors(accountController.buildAccountManagement)
 );
 
+// Account update route
+router.get(
+  "/update/:account_id",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildAccountUpdate)
+);
+
+// Process account update
+router.post(
+  "/update",
+  utilities.checkLogin,
+  validate.accountUpdateRules(),
+  validate.checkAccountData,
+  utilities.handleErrors(accountController.updateAccount)
+);
+
+// Process password update
+router.post(
+  "/update-password",
+  utilities.checkLogin,
+  validate.passwordRules(),
+  validate.checkPasswordData,
+  utilities.handleErrors(accountController.updatePassword)
+);
+
+// Process logout
+router.get("/logout", utilities.handleErrors(accountController.accountLogout));
+
 export default router;

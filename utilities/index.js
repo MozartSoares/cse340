@@ -151,10 +151,10 @@ Util.checkJWTToken = (req, res, next) => {
   if (req.cookies.jwt) {
     jwt.verify(
       req.cookies.jwt,
-      process.env.SESSION_SECRET,
+      process.env.ACCESS_TOKEN_SECRET,
       function (err, accountData) {
         if (err) {
-          req.flash("Please log in");
+          req.flash("notice", "Please log in");
           res.clearCookie("jwt");
           return res.redirect("/account/login");
         }
@@ -174,6 +174,27 @@ Util.checkJWTToken = (req, res, next) => {
 Util.checkLogin = (req, res, next) => {
   if (res.locals.loggedin) {
     next();
+  } else {
+    req.flash("notice", "Please log in.");
+    return res.redirect("/account/login");
+  }
+};
+
+/* ****************************************
+ *  Check Admin/Employee Access
+ * ************************************ */
+Util.checkAdminEmployee = (req, res, next) => {
+  if (res.locals.loggedin) {
+    const accountType = res.locals.accountData.account_type;
+    if (accountType === "Employee" || accountType === "Admin") {
+      next();
+    } else {
+      req.flash(
+        "notice",
+        "Unauthorized access. Please log in with appropriate credentials."
+      );
+      return res.redirect("/account/login");
+    }
   } else {
     req.flash("notice", "Please log in.");
     return res.redirect("/account/login");

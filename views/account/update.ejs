@@ -1,0 +1,196 @@
+<%- messages() %>
+
+<h1><%= title %></h1>
+
+<% if (errors) { %>
+<ul class="notice">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+
+<div class="update-container">
+  <form
+    id="accountUpdateForm"
+    action="/account/update"
+    method="post"
+    class="form"
+  >
+    <h2>Account Update</h2>
+    <fieldset>
+      <div class="form-group">
+        <label for="account_firstname">First Name:</label>
+        <input
+          type="text"
+          id="account_firstname"
+          name="account_firstname"
+          required
+          value="<%= locals.account_firstname ? account_firstname : locals.accountData.account_firstname %>"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="account_lastname">Last Name:</label>
+        <input
+          type="text"
+          id="account_lastname"
+          name="account_lastname"
+          required
+          value="<%= locals.account_lastname ? account_lastname : locals.accountData.account_lastname %>"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="account_email">Email:</label>
+        <input
+          type="email"
+          id="account_email"
+          name="account_email"
+          required
+          value="<%= locals.account_email ? account_email : locals.accountData.account_email %>"
+        />
+      </div>
+
+      <input
+        type="hidden"
+        name="account_id"
+        value="<%= locals.accountData.account_id %>"
+      />
+
+      <div class="form-group">
+        <button type="submit" class="form-button">Update Account</button>
+      </div>
+    </fieldset>
+  </form>
+
+  <form
+    id="passwordChangeForm"
+    action="/account/update-password"
+    method="post"
+    class="form"
+  >
+    <h2>Change Password</h2>
+    <fieldset>
+      <div class="form-group">
+        <label for="account_password">New Password:</label>
+        <input
+          type="password"
+          id="account_password"
+          name="account_password"
+          required
+          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+        />
+      </div>
+
+      <p class="password-instructions">
+        Password must be at least 12 characters and include 1 uppercase letter,
+        1 lowercase letter, 1 number and 1 special character
+      </p>
+
+      <input
+        type="hidden"
+        name="account_id"
+        value="<%= locals.accountData.account_id %>"
+      />
+
+      <div class="form-group">
+        <button type="submit" class="form-button">Change Password</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+<style>
+  .update-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .form {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .form h2 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+  }
+
+  fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  .form-button {
+    background-color: #4a4a4a;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .form-button:hover {
+    background-color: #333;
+  }
+
+  .password-instructions {
+    font-size: 14px;
+    color: #666;
+    margin: 8px 0 20px;
+    line-height: 1.4;
+  }
+
+  @media screen and (max-width: 768px) {
+    .update-container {
+      padding: 10px;
+    }
+
+    .form {
+      padding: 15px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      font-size: 14px;
+    }
+
+    .form-button {
+      width: 100%;
+    }
+  }
+</style>
