@@ -48,6 +48,35 @@ router.post(
   utilities.handleErrors(invController.addInventory)
 );
 
+//get inventory JSON data by classification
+router.get(
+  "/getInventory/:classification_id",
+  utilities.handleErrors(invController.getInventoryJSON)
+);
+
+//build edit inventory view
+router.get(
+  "/edit/:inv_id",
+  utilities.handleErrors(invController.editInventoryView)
+);
+
+//update inventory item
+router.post(
+  "/update",
+  validate.inventoryRules(),
+  validate.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory)
+);
+
+//build delete confirmation view
+router.get(
+  "/delete/:inv_id",
+  utilities.handleErrors(invController.buildDeleteView)
+);
+
+//process delete inventory item
+router.post("/delete", utilities.handleErrors(invController.deleteInventory));
+
 //generate error (for testing)
 router.get(
   "/generate-error",

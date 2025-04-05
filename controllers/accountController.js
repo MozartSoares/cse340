@@ -110,11 +110,6 @@ export async function accountLogin(req, res) {
   }
 
   try {
-    console.log("Comparing passwords...");
-    console.log(
-      "Account password in DB (hashed):",
-      accountData.account_password
-    );
     const passwordsMatch = await bcrypt.compare(
       account_password,
       accountData.account_password
@@ -138,7 +133,7 @@ export async function accountLogin(req, res) {
           maxAge: 3600 * 1000,
         });
       }
-      console.log("Redirecting to account management");
+
       return res.redirect("/account/");
     }
     console.log("Invalid password");
