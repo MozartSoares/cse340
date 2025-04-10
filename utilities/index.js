@@ -365,4 +365,20 @@ Util.buildUserReviewList = async function (reviews) {
   return html;
 };
 
+/* ****************************************
+ * Build the home page view
+ * *************************************** */
+Util.buildHome = async function (req, res) {
+  try {
+    const nav = await Util.getNav();
+    res.render("index", {
+      title: "Home",
+      nav,
+      errors: null,
+    });
+  } catch (error) {
+    throw error;
+  }
+};
+
 export default Util;
