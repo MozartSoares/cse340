@@ -64,6 +64,11 @@ app.set("view cache", false);
 /* ***********************
  * Middleware
  *************************/
+app.use(express.static("public")); // Serve static files
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+
 app.use(
   session({
     store: new (connectPgSimple(session))({
@@ -84,10 +89,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.static("public")); // Serve static files
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
 app.use(utilities.checkJWTToken);
 
 /* ***********************
@@ -96,11 +97,13 @@ app.use(utilities.checkJWTToken);
 import staticRoutes from "./routes/static.js";
 import inventoryRoute from "./routes/inventoryRoute.js";
 import accountRoute from "./routes/accountRoute.js";
+import reviewRoute from "./routes/reviewRoute.js";
 
 app.use(staticRoutes);
 app.get("/", utilities.handleErrors(baseController.buildHome));
 app.use("/inv", inventoryRoute);
 app.use("/account", accountRoute);
+app.use("/reviews", reviewRoute);
 
 app.use(async (req, res, next) => {
   next({ status: 404, message: "Sorry, we appear to have lost that page." });

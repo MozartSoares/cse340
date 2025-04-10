@@ -3,6 +3,7 @@ import utilities from "../utilities/index.js";
 import { buildLogin, buildRegister } from "../controllers/accountController.js";
 import accountController from "../controllers/accountController.js";
 import validate from "../utilities/account-validation.js";
+import * as reviewController from "../controllers/reviewController.js";
 
 const router = express.Router();
 
@@ -62,5 +63,12 @@ router.post(
 
 // Process logout
 router.get("/logout", utilities.handleErrors(accountController.accountLogout));
+
+// User reviews route
+router.get(
+  "/reviews",
+  utilities.checkLogin,
+  utilities.handleErrors(reviewController.getUserReviews)
+);
 
 export default router;

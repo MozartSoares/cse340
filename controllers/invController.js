@@ -71,7 +71,10 @@ invCont.buildInventoryPage = async function (req, res, next) {
       });
     }
 
-    const page = await utilities.buildInventoryItemPage(data);
+    const page = await utilities.buildInventoryItemPage(
+      data,
+      res.locals.loggedin
+    );
     const nav = await utilities.getNav();
 
     res.render("./inventory/inventoryItem", {

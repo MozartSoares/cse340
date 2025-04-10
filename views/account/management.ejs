@@ -24,6 +24,11 @@
         <span class="button-text">Update Account Information</span>
       </a>
 
+      <a href="/account/reviews" class="action-button reviews-btn">
+        <span class="button-icon">📝</span>
+        <span class="button-text">My Reviews</span>
+      </a>
+
       <% if (locals.accountData.account_type === 'Employee' ||
       locals.accountData.account_type === 'Admin') { %>
       <h3>Inventory Management</h3>
@@ -105,6 +110,14 @@
 
   .manage-btn:hover {
     background-color: #006064;
+  }
+
+  .reviews-btn {
+    background-color: #4caf50;
+  }
+
+  .reviews-btn:hover {
+    background-color: #388e3c;
   }
 
   .button-icon {
